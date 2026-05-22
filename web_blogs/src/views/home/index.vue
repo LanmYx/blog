@@ -1,11 +1,10 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 </script>
 
 <template>
-<div>这里是首页</div>
+  <div class="home-page">这里是首页</div>
 </template>
 
 <style scoped>
-
 </style>
