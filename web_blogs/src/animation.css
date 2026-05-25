@@ -71,3 +71,20 @@
         transform: translate(10vw, -15vh);
     }
 }
+
+@keyframes sakuraFall {
+    0% {
+        transform: translate(0, -10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(15vw, 110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
