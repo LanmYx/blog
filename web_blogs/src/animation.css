@@ -88,3 +88,12 @@
         opacity: 0;
     }
 }
+
+@keyframes swayWildGrass {
+    0% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}

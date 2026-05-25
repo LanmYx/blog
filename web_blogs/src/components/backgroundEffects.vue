@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Fireflies from "@/components/fireflies.vue";
 import Sakura from "@/components/sakura.vue";
+import WindyGrass from "@/components/windyGrass.vue";
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import Sakura from "@/components/sakura.vue";
   <div class="transition-opacity duration-1000 opacity-100">
     <Sakura/>
   </div>
-  <!--  <WindyGrass/>-->
+  <WindyGrass/>
 </template>
 
 <style scoped>
