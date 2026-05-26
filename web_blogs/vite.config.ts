@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
+import postcssPresetEnv from 'postcss-preset-env';
+
 const viteConfig = defineConfig(({mode, command}) => {
     const env = loadEnv(mode, process.cwd())
     return {
@@ -29,6 +31,11 @@ const viteConfig = defineConfig(({mode, command}) => {
                 // },
             },
         },
+        css: {
+            postcss: { // 处理css在不同浏览器的兼容性问题
+                plugins: [postcssPresetEnv()]
+            }
+        }
     }
 })
 export default viteConfig
