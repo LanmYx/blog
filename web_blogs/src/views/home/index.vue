@@ -1,7 +1,13 @@
 <script lang="ts" setup>
+import {ref} from "vue";
 import tsconfigJson from "@/common/tsconfig.json";
 
 import searchBar from './components/searchBar.vue'
+import detailPost from './components/detail.vue'
+
+
+const showModule = ref('searchBar')
+const detailPostValue = ref(null)
 
 let allPosts: any[] = [];
 
@@ -15,11 +21,17 @@ try {
 } catch (e) {
 
 }
+
+const onChangeShowModule = (val) => {
+  showModule.value = val.type
+  detailPostValue.value = JSON.parse(JSON.stringify(val))
+}
 </script>
 
 <template>
   <div class="home-page w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6 lg:px-10 relative z-10">
-    <searchBar :posts="allPosts"/>
+    <searchBar v-if="showModule === 'searchBar'" :posts="allPosts" @changeModule="onChangeShowModule"/>
+    <detailPost v-else @changeModule="onChangeShowModule"/>
   </div>
 </template>
 

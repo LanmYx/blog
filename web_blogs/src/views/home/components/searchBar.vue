@@ -19,6 +19,7 @@ const props = defineProps({
     default: () => [] as Post[]
   }
 })
+const emit = defineEmits(['changeModule'])
 
 const containerRef = ref<HTMLDivElement>(null);
 
@@ -47,6 +48,10 @@ const searchResults = computed(() => {
 const onSelectSearch = (post) => {
   onSetIsOpen(false)
   console.log(post)
+  emit('changeModule', {
+    ...post,
+    type: 'detailPost'
+  })
 }
 </script>
 
@@ -97,6 +102,7 @@ const onSelectSearch = (post) => {
             v-for="post in searchResults"
             :key="post.slug"
             class="px-6 py-5 hover:bg-indigo-50/80 transition-colors group border-b border-slate-100/50 last:border-0 flex flex-col gap-2"
+            style="cursor: pointer"
             @click="onSelectSearch(post)">
           <div class="flex items-start justify-between gap-4">
             <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors line-clamp-1">

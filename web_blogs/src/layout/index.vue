@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import {reactive} from "vue";
-import {type RouteRecordRaw, useRouter} from "vue-router";
+import {type RouteRecordRaw, useRoute, useRouter} from "vue-router";
 
 const router = useRouter()
+
+const route = useRoute()
 
 // 1. 定义菜单类型（关键！）
 interface MenuItem {
@@ -12,7 +14,7 @@ interface MenuItem {
 
 const state = reactive({
   linkPath: [] as MenuItem[],
-  activePage: '/home'
+  activePage: route.path
 })
 
 const initLinkPath = () => {
@@ -27,6 +29,7 @@ const initLinkPath = () => {
     path: i.path,
     name: i.meta?.name as string
   }));
+
 }
 
 const onChangeActivePage = (route: MenuItem) => {
