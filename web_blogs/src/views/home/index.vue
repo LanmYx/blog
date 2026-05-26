@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import tsconfigJson from "@/common/tsconfig.json";
 
+import pageTransition from '@/components/pageTransition.vue'
 import searchBar from './components/searchBar.vue'
 import detailPost from './components/detail.vue'
 
@@ -29,10 +30,12 @@ const onChangeShowModule = (val) => {
 </script>
 
 <template>
-  <div class="home-page w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6 lg:px-10 relative z-10">
-    <searchBar v-if="showModule === 'searchBar'" :posts="allPosts" @changeModule="onChangeShowModule"/>
-    <detailPost v-else @changeModule="onChangeShowModule"/>
-  </div>
+  <pageTransition>
+    <div class="home-page w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6 lg:px-10 relative z-10">
+      <searchBar v-if="showModule === 'searchBar'" :posts="allPosts" @changeModule="onChangeShowModule"/>
+      <detailPost v-else @changeModule="onChangeShowModule"/>
+    </div>
+  </pageTransition>
 </template>
 
 <style scoped>

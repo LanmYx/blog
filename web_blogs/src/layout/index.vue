@@ -2,8 +2,6 @@
 import {reactive} from "vue";
 import {type RouteRecordRaw, useRoute, useRouter} from "vue-router";
 
-import pageTransition from '@/components/pageTransition.vue'
-
 const router = useRouter()
 
 const route = useRoute()
@@ -67,9 +65,9 @@ initLinkPath()
       </nav>
     </div>
   </header>
-  <pageTransition>
+  <section>
     <router-view></router-view>
-  </pageTransition>
+  </section>
 </template>
 
 <style scoped>
