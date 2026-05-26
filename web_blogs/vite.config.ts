@@ -8,12 +8,26 @@ const viteConfig = defineConfig(({mode, command}) => {
     return {
         plugins: [
             vue(),
-            tailwindcss()
+            tailwindcss(),
         ],
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src')
             }
+        },
+        server: {
+            host: '0.0.0.0',
+            port: env.VITE_PORT as unknown as number,
+            open: JSON.parse(env.VITE_OPEN),
+            hmr: true,
+            proxy: {
+                // '/gitee': {
+                //     target: 'https://gitee.com',
+                //     ws: true,
+                //     changeOrigin: true,
+                //     rewrite: (path) => path.replace(/^\/gitee/, ''),
+                // },
+            },
         },
     }
 })

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "axios": "^1.16.1",
+    "motion-v": "^2.2.1",
     "tailwindcss": "^4.3.0",
     "vue": "^3.5.34",
     "vue-router": "^5.0.7"

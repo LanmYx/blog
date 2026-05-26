@@ -62,9 +62,10 @@ initLinkPath()
       </nav>
     </div>
   </header>
-  <router-view></router-view>
+  <section>
+    <router-view></router-view>
+  </section>
 </template>
 
 <style scoped>
-
 </style>

@@ -34,3 +34,20 @@ export function throttle<T extends (...args: any[]) => any>(
         }
     }
 }
+
+export function formatUpdateTime(dateString: string) {
+    if (!dateString || dateString === '2001-04-03') return '刚刚更新';
+    try {
+        const d = new Date(dateString);
+        if (isNaN(d.getTime())) return dateString;
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const hours = String(d.getHours()).padStart(2, '0');
+        const mins = String(d.getMinutes()).padStart(2, '0');
+        if (hours === '00' && mins === '00') return `${year}.${month}.${day}`;
+        return `${year}.${month}.${day} ${hours}:${mins}`;
+    } catch {
+        return dateString;
+    }
+}
