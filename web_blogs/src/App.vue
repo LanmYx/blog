@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+import {siteConfig} from "@/common/siteConfig.ts";
 // 生成每个光点的位置、大小、动画延迟
-import BackgroundSlider from "@/components/backgroundSlider.vue";
-import BackgroundEffects from "@/components/backgroundEffects.vue";
+import {defineAsyncComponent} from "vue";
+
+const BackgroundSlider = defineAsyncComponent(() => import('@/components/backgroundSlider.vue'))
+const BackgroundEffects = defineAsyncComponent(() => import('@/components/backgroundEffects.vue'))
 </script>
 
 <template>
@@ -13,7 +16,13 @@ import BackgroundEffects from "@/components/backgroundEffects.vue";
         class="absolute inset-0 z-[-9] bg-white/30 dark:bg-slate-900/40 backdrop-blur-md transition-colors duration-1000"></div>
     <!--    🌟 全端保留渐变流动-->
     <div
-        class="absolute inset-0 z-[-8] opacity-60 dark:opacity-20 mix-blend-color transition-opacity duration-1000 transform-gpu gradient-move"></div>
+        :style="{
+     background: `linear-gradient(-45deg, ${siteConfig.themeColors.join(', ')})`,
+     backgroundSize: '400% 400%',
+     animation: 'gradientMove 15s ease infinite' // 🌟 全端保留渐变流动
+    }"
+        class="absolute inset-0 z-[-8] opacity-60 dark:opacity-20 mix-blend-color transition-opacity duration-1000 transform-gpu"
+    ></div>
 
     <!--    模糊光晕-->
     <div
@@ -31,11 +40,6 @@ import BackgroundEffects from "@/components/backgroundEffects.vue";
   </div>
 </template>
 <style scoped>
-.gradient-move {
-  background: linear-gradient(-45deg, rgb(161, 140, 209), rgb(251, 194, 235), rgb(161, 196, 253), rgb(194, 233, 251)) 0% 0% / 400% 400%;
-  animation: 15s ease 0s infinite normal none running gradientMove;
-}
-
 .sparkle {
   opacity: 0;
   animation: fireflyBreathe ease-in-out infinite;

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import {reactive} from "vue";
 import {type RouteRecordRaw, useRoute, useRouter} from "vue-router";
+import {siteConfig} from "../common/siteConfig.ts";
 
 const router = useRouter()
 
@@ -46,9 +47,9 @@ initLinkPath()
       <router-link
           class="text-xl font-black text-slate-800 tracking-tighter hover:text-indigo-600 transition-all duration-300"
           to="/">
-        LanmSama
-        <span class="text-indigo-500 mx-1">の</span>
-        博客
+        {{ siteConfig.authorName }}
+        <span class="text-indigo-500 mx-1">{{ siteConfig.navSuffix }}</span>
+        {{ siteConfig.navAfter }}
       </router-link>
       <nav class="flex gap-8 text-sm font-bold">
         <router-link

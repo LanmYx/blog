@@ -1,13 +1,8 @@
 <script lang="ts" setup>
 import {onMounted, onUnmounted, reactive, ref, watch} from "vue";
-import bg1 from '@/assets/bg-1.PNG'
-import bg2 from '@/assets/bg-2.JPG'
-import bg3 from '@/assets/bg-3.PNG'
-import bg4 from '@/assets/bg-4.JPG'
+import {siteConfig} from "@/common/siteConfig.ts";
 
-const bgList = reactive([
-  bg1, bg2, bg3, bg4
-])
+const bgList = reactive([...siteConfig.bgImages])
 
 const activeBg = ref(0)
 

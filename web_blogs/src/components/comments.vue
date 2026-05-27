@@ -7,7 +7,6 @@ import {siteConfig} from "@/common/siteConfig.ts";
 const containerRef = ref<HTMLDivElement>(null)
 
 const init = () => {
-  console.log(containerRef.value)
   if (!containerRef.value) return;
   // 清空之前的评论区（防止 Next.js 路由切换时重复渲染）
   containerRef.value.innerHTML = '';
@@ -61,8 +60,40 @@ onUnmounted(() => {
 </template>
 
 <style>
+.gt-container .gt-meta {
+  margin: 1.25em 0 !important;
+  padding: 1em 0 !important;
+  border-bottom: 1px solid color-mix(in oklab, var(--color-slate-200) 50%, transparent) !important;
+  position: relative !important;
+}
 
-/* 让 Vite 的降级选择器对 gitalk-guard 内部完全失效 */
+.gt-container .gt-popup {
+  padding: 0.625em 0 !important;
+  border: 1px solid #e9e9e9 !important;
+}
+
+.gt-container .gt-popup .gt-action {
+  margin: 0.5em 0 !important;
+  padding: 0 1.125em !important;
+}
+
+.gt-copyright {
+  border-top: 1px solid #e9e9e9 !important;
+  margin: 0 .9375em .5em !important;
+  padding-top: .5em !important;
+}
+
+.gt-container .gt-header-comment {
+  margin-left: 1.25em !important;
+}
+
+.gt-container .gt-header-textarea {
+  padding: 0.75em !important;
+}
+
+.gt-container .gt-header-controls {
+  margin: 0.75em 0 0 !important;
+}
 
 .custom-gitalk-glass .gt-container .gt-header-textarea {
   background: rgba(255, 255, 255, 0.1) !important;
@@ -92,6 +123,9 @@ onUnmounted(() => {
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4) !important;
   transition: transform 0.2s, box-shadow 0.2s;
   color: white !important;
+  padding: 0.75em 1.25em !important;
+  margin-left: 1.25em !important;
+  font-size: 0.75em !important;
 }
 
 .custom-gitalk-glass .gt-container .gt-btn:hover {

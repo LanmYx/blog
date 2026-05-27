@@ -126,9 +126,9 @@ watch(() => props.postData, (newValue) => {
 
         <!--        评论模块同步git代码到github后开发-->
         <!--        todo-->
-        <!--        <div class="mt-12 md:mt-16">-->
-        <!--          <Comments/>-->
-        <!--        </div>-->
+        <div class="mt-12 md:mt-16">
+          <Comments/>
+        </div>
       </div>
     </article>
   </main>

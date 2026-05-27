@@ -1,28 +1,34 @@
 // siteConfig.ts - 你的全站“控制中心”
 
+import bg1 from '@/assets/bg-1.PNG'
+import bg2 from '@/assets/bg-2.JPG'
+import bg3 from '@/assets/bg-3.PNG'
+import bg4 from '@/assets/bg-4.JPG'
+
 export const siteConfig = {
     // 1. 网站标题与博主信息
-    title: "XingHuiSama の 宝藏之地",
-    faviconUrl: "https://bu.dusays.com/2026/03/24/69c1e38ac1846.jpg",
-    authorName: "XingHuiSama",
+    title: "LanmSama の 博客",
+    faviconUrl: "/favicon.jpg",
+    authorName: "LanmSama",
     bio: "在代码、学术与分子动力学模拟间穿梭的普通人。近期正埋头于 GROMACS 模拟研究与神经网络计算。",
 
-    navTitle: "XingHuiSama",
+    navTitle: "LanmSama",
 
     // 👇 【新增】导航栏中间的那个后缀/分隔符（默认是 の）
     navSuffix: "の",
 
-    navAfter: "宝藏之地",
+    navAfter: "博客",
 
     // 2. 头像设置 (支持网络链接，或将图片放入 public 文件夹后使用 "/me.jpg")
-    avatarUrl: "https://bu.dusays.com/2026/03/24/69c1e38ac1846.jpg",
+    avatarUrl: "/favicon.jpg",
 
     // 3. 网站背景设置 (二选一)
     // 如果想用纯图片背景，请在下面 bgImage 写路径，并将 useGradient 设为 false
-    useGradient: false,
+    // useGradient: false,
     themeColors: ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb"], // 呼吸流动的颜色组合
 // 修改这里：变成图片数组
-    bgImages: ["https://bu.dusays.com/2026/03/24/69c1e38b4c370.jpg", "https://bu.dusays.com/2026/03/24/69c26fe4acdb5.jpg", "https://bu.dusays.com/2026/03/24/69c26fe4d9486.jpg"],
+//     bgImages: ["https://bu.dusays.com/2026/03/24/69c1e38b4c370.jpg", "https://bu.dusays.com/2026/03/24/69c26fe4acdb5.jpg", "https://bu.dusays.com/2026/03/24/69c26fe4d9486.jpg"],
+    bgImages: [bg1, bg2, bg3, bg4],
 
     // 4. 文章默认封面图 (当 Markdown 没写 cover 时显示)
     defaultPostCover: "https://bu.dusays.com/2026/03/24/69c1e38b346cb.jpg",
@@ -80,4 +86,9 @@ export const siteConfig = {
     },
     friendLinkApplyFormat: "名称：XingHuiSamaの宝藏之地\n简介：今天我也要学习吗\n链接：https://www.xinghuisama.top\n头像：https://bu.dusays.com/2026/03/24/69c1e38ac1846.jpg",
     enableLevelSystem: true,
+
+    // 👇 【新增】：全局背景是否开启荧光特效、樱花特效、草地特效
+    Fireflies: true,
+    Sakura: true,
+    WindyGrass: true
 };
