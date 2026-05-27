@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {computed, ref} from "vue";
-import {motion, AnimatePresence} from "motion-v";
+import {AnimatePresence, motion} from "motion-v";
 import Highlight from "@/views/home/components/highlight.vue";
 
 interface Post {
@@ -87,39 +87,38 @@ const onSelectSearch = (post) => {
         </svg>
       </div>
     </form>
-  </div>
-  <AnimatePresence>
-    <motion.div
-        v-if="isOpen && searchQuery.trim() !== ''"
-        :animate="{ opacity: 1, y: 0, scale: 1 }"
-        :exit="{ opacity: 0, y: -10, scale: 0.98 }"
-        :initial="{ opacity: 0, y: -10, scale: 0.98 }"
-        :transition="{ duration: 0.2 }"
-        class="absolute top-full left-0 right-0 mt-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-3xl border border-white/50 dark:border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden max-h-[450px] overflow-y-auto z-20"
-    >
-      <div v-if="searchResults.length" class="flex flex-col py-3">
-        <div
-            v-for="post in searchResults"
-            :key="post.slug"
-            class="px-6 py-5 hover:bg-indigo-50/80 transition-colors group border-b border-slate-100/50 last:border-0 flex flex-col gap-2"
-            style="cursor: pointer"
-            @click="onSelectSearch(post)">
-          <div class="flex items-start justify-between gap-4">
-            <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors line-clamp-1">
-              <Highlight :query="searchQuery" :text="post.title"/>
-            </h4>
-            <span
-                v-if="post.date"
-                class="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-1 rounded-md shrink-0 mt-1">
+    <AnimatePresence>
+      <motion.div
+          v-if="isOpen && searchQuery.trim() !== ''"
+          :animate="{ opacity: 1, y: 0, scale: 1 }"
+          :exit="{ opacity: 0, y: -10, scale: 0.98 }"
+          :initial="{ opacity: 0, y: -10, scale: 0.98 }"
+          :transition="{ duration: 0.2 }"
+          class="absolute top-full left-0 right-0 mt-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-3xl border border-white/50 dark:border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden max-h-[450px] overflow-y-auto z-20"
+      >
+        <div v-if="searchResults.length" class="flex flex-col py-3">
+          <div
+              v-for="post in searchResults"
+              :key="post.slug"
+              class="px-6 py-5 hover:bg-indigo-50/80 transition-colors group border-b border-slate-100/50 last:border-0 flex flex-col gap-2"
+              style="cursor: pointer"
+              @click="onSelectSearch(post)">
+            <div class="flex items-start justify-between gap-4">
+              <h4 class="text-lg font-bold text-slate-800 dark:text-slate-200 transition-colors line-clamp-1">
+                <Highlight :query="searchQuery" :text="post.title"/>
+              </h4>
+              <span
+                  v-if="post.date"
+                  class="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-1 rounded-md shrink-0 mt-1">
               {{ post.date.split(' ')[0] }}
             </span>
-          </div>
+            </div>
 
-          <p v-if="post.description" class="text-sm text-slate-500 line-clamp-2 leading-relaxed">
-            <Highlight :query="searchQuery" :text="post.description"/>
-          </p>
+            <p v-if="post.description" class="text-sm text-slate-500 line-clamp-2 leading-relaxed">
+              <Highlight :query="searchQuery" :text="post.description"/>
+            </p>
 
-          <div v-if="post.tags && post.tags.length" class="flex flex-wrap gap-2 mt-2">
+            <div v-if="post.tags && post.tags.length" class="flex flex-wrap gap-2 mt-2">
             <span v-for="tag in post.tags" :key="tag"
                   class="flex items-center text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 dark:text-slate-400 rounded-md">
                             <svg class="mr-0.5 opacity-60" fill="none" height="10" stroke="currentColor"
@@ -130,24 +129,25 @@ const onSelectSearch = (post) => {
                             </svg>
                             <Highlight :query="searchQuery" :text="tag"/>
                           </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div v-else class="px-6 py-12 text-center flex flex-col items-center gap-3">
-        <div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" stroke-linecap="round"
-               stroke-linejoin="round"
-               stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
-          </svg>
+        <div v-else class="px-6 py-12 text-center flex flex-col items-center gap-3">
+          <div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round"
+                 stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+            </svg>
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 font-medium">
+            数据海中未发现关于 "<span class="text-indigo-500 font-bold">{{ searchQuery }}</span>" 的踪迹
+          </p>
         </div>
-        <p class="text-slate-500 dark:text-slate-400 font-medium">
-          数据海中未发现关于 "<span class="text-indigo-500 font-bold">{{ searchQuery }}</span>" 的踪迹
-        </p>
-      </div>
-    </motion.div>
-  </AnimatePresence>
+      </motion.div>
+    </AnimatePresence>
+  </div>
 </template>
 
 <style scoped>
