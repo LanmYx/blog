@@ -1,3 +1,5 @@
+import {showToast} from './ToastPlugin.ts'
+
 /**
  * 防抖函数
  */
@@ -51,3 +53,9 @@ export function formatUpdateTime(dateString: string) {
         return dateString;
     }
 }
+
+
+export const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    showToast(`✨ ${label}已复制到剪贴板: ${text}`, 'success');
+};
