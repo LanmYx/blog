@@ -11,8 +11,18 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "axios": "^1.16.1",
+    "front-matter": "^4.0.2",
+    "gitalk": "^1.8.0",
     "motion-v": "^2.2.1",
+    "rehype-highlight": "^7.0.2",
+    "rehype-katex": "^7.0.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
     "tailwindcss": "^4.3.0",
+    "unified": "^11.0.5",
     "vue": "^3.5.34",
     "vue-router": "^5.0.7"
   },
