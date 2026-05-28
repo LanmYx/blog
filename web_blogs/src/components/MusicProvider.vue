@@ -253,7 +253,7 @@ provide('MusicContext', {
   currentSong,
   togglePlay, nextSong, prevSong, handleSeek,
   playSong, setVolume, toggleMute, togglePlayMode // 暴露新方法
-})
+} as MusicContextType)
 
 onMounted(async () => {
   isMounted = true

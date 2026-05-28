@@ -46,7 +46,7 @@ const handleScroll = () => {
   } else {
     state.showNav = true
   }
-  setLastScrollY(currentScrollY);
+  state.lastScrollY = currentScrollY
 };
 
 initLinkPath()
