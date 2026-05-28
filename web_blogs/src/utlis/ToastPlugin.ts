@@ -24,5 +24,6 @@ export const showToast = (message: string, type = 'success') => {
 export default {
     install(app: any) {
         app.config.globalProperties.$showToast = showToast
+        app.provide('$showToast', showToast)
     }
 }

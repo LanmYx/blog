@@ -1,4 +1,4 @@
-import {showToast} from './ToastPlugin.ts'
+import {inject} from 'vue'
 
 /**
  * 防抖函数
@@ -54,8 +54,28 @@ export function formatUpdateTime(dateString: string) {
     }
 }
 
+export function useToast() {
+    const toast = inject<{ showToast: (...args: any[]) => void }>('toast')
+
+    if (!toast) {
+        throw new Error('useToast 必须在 Toast 组件的子组件中使用')
+    }
+
+    return toast
+}
 
 export const copyToClipboard = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    showToast(`✨ ${label}已复制到剪贴板: ${text}`, 'success');
+    return new Promise((resolve, reject) => {
+        try {
+            navigator.clipboard.writeText(text);
+            resolve({
+                text,
+                label,
+                code: 200
+            });
+        } catch (error) {
+            reject(error);
+        }
+    })
+
 };

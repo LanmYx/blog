@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import {siteConfig} from "@/common/siteConfig.ts";
 import StatItem from "@/components/StatItem.vue";
-import {copyToClipboard} from "@/utlis/tools.ts";
+import {copyToClipboard, useToast} from "@/utlis/tools.ts";
 import SocialBtn from "@/components/SocialBtn.vue";
+import {inject} from 'vue'
+
+const {showToast} = useToast()
 
 const props = defineProps({
   chatterCount: Number,
@@ -17,8 +20,14 @@ const goAbout = () => {
 const onClickSocialBtn = (type) => {
   console.log(type)
 }
-</script>
 
+const onCopyText = async (text, label) => {
+  const res = await copyToClipboard(text, label)
+  if (res.code === 200) {
+    showToast(`✨ ${res.label}已复制到剪贴板: ${res.text}`, 'success')
+  }
+}
+</script>
 <template>
   <div
       class="md:col-span-7 rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl p-5 sm:p-6 md:p-8 flex flex-col justify-between transition-all duration-700 hover:scale-[1.01] cursor-pointer group relative overflow-hidden h-full min-h-[220px] md:min-h-[280px]"
@@ -65,9 +74,9 @@ const onClickSocialBtn = (type) => {
                    @click="onClickSocialBtn('gitee')"/>
         <SocialBtn type="google"
                    @click="onClickSocialBtn('google')"/>
-        <SocialBtn type="email" @click="() => copyToClipboard(siteConfig.social?.email || '', '邮箱')"/>
-        <SocialBtn type="qq" @click="() => copyToClipboard(siteConfig.social?.qq || '', 'QQ号')"/>
-        <SocialBtn type="wechat" @click="() => copyToClipboard(siteConfig.social?.wechat || '', '微信号')"/>
+        <SocialBtn type="email" @click="onCopyText(siteConfig.social?.email,'邮箱')"/>
+        <SocialBtn type="qq" @click="onCopyText(siteConfig.social?.qq,'QQ')"/>
+        <SocialBtn type="wechat" @click="onCopyText(siteConfig.social?.wechat,'微信')"/>
       </div>
     </div>
   </div>

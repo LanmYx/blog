@@ -9,7 +9,6 @@ import detailPost from './components/detail.vue'
 import ProfileCard from "@/components/ProfileCard.vue";
 import {albums} from "@/data/albums.ts";
 
-
 const showModule = ref('searchBar')
 const detailPostValue = ref(null)
 

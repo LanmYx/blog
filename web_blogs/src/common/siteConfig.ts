@@ -40,9 +40,9 @@ export const siteConfig = {
         github: "",
         gitee: "",
         google: "",
-        email: "",
-        qq: "1124533793",
-        wechat: "XingHuisama",
+        email: "1533320811@qq.com",
+        qq: "1533320811",
+        wechat: "a1533320811",
     },
     counts: {
         photos: 128, // 照片墙数量可以手动写死或动态计算

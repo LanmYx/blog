@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import {reactive} from "vue";
+import {defineAsyncComponent, reactive} from "vue";
 import {type RouteRecordRaw, useRoute, useRouter} from "vue-router";
 import {siteConfig} from "../common/siteConfig.ts";
 
+const Toast = defineAsyncComponent(() => import('@/components/toast.vue'))
 const router = useRouter()
 
 const route = useRoute()
@@ -67,7 +68,9 @@ initLinkPath()
     </div>
   </header>
   <section>
-    <router-view></router-view>
+    <Toast>
+      <router-view></router-view>
+    </Toast>
   </section>
 </template>
 
