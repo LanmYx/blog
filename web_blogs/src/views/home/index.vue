@@ -8,6 +8,7 @@ import searchBar from './components/searchBar.vue'
 import detailPost from './components/detail.vue'
 import ProfileCard from "@/components/ProfileCard.vue";
 import {albums} from "@/data/albums.ts";
+import CloudPlayer from "@/components/CloudPlayer.vue";
 
 const showModule = ref('searchBar')
 const detailPostValue = ref(null)
@@ -98,7 +99,7 @@ _fetchChatters()
             </div>
             <!--            {/* 手机上占满1列，电脑上占5列 */}-->
             <div class="col-span-1 lg:col-span-5 flex flex-col">
-              <!--              <CloudPlayer/>-->
+              <CloudPlayer/>
             </div>
           </div>
         </main>

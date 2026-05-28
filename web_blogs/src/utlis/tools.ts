@@ -37,6 +37,13 @@ export function throttle<T extends (...args: any[]) => any>(
     }
 }
 
+export const formatTime = (time: number) => {
+    if (!time || isNaN(time)) return "00:00";
+    const m = Math.floor(time / 60).toString().padStart(2, '0');
+    const s = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+};
+
 export function formatUpdateTime(dateString: string) {
     if (!dateString || dateString === '2001-04-03') return '刚刚更新';
     try {
@@ -62,6 +69,16 @@ export function useToast() {
     }
 
     return toast
+}
+
+export function useMusic() {
+    const MusicContext = inject<{ MusicContext: object }>('MusicContext')
+
+    if (!MusicContext) {
+        throw new Error('useMusic 必须在 MusicProvider 组件的子组件中使用')
+    }
+
+    return MusicContext
 }
 
 export const copyToClipboard = (text: string, label: string) => {

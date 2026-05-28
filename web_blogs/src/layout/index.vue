@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {defineAsyncComponent, reactive} from "vue";
+import {defineAsyncComponent, onMounted, onUnmounted, reactive} from "vue";
 import {type RouteRecordRaw, useRoute, useRouter} from "vue-router";
 import {siteConfig} from "../common/siteConfig.ts";
 
@@ -16,7 +16,9 @@ interface MenuItem {
 
 const state = reactive({
   linkPath: [] as MenuItem[],
-  activePage: route.path
+  activePage: route.path,
+  showNav: true,
+  lastScrollY: 0
 })
 
 const initLinkPath = () => {
@@ -37,13 +39,30 @@ const initLinkPath = () => {
 const onChangeActivePage = (route: MenuItem) => {
   state.activePage = route.path
 }
+const handleScroll = () => {
+  const currentScrollY = window.scrollY;
+  if (currentScrollY > state.lastScrollY && currentScrollY > 80) {
+    state.showNav = false
+  } else {
+    state.showNav = true
+  }
+  setLastScrollY(currentScrollY);
+};
 
 initLinkPath()
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, {passive: true});
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+})
 </script>
 
 <template>
   <header
-      class="w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b translate-y-0 bg-white/40 bg-slate-900/50 backdrop-blur-xl border-white/20 border-white/5 shadow-sm">
+      :class="`w-full fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b bg-white/40 bg-slate-900/50 backdrop-blur-xl border-white/20 border-white/5 shadow-sm ${state.showNav ? 'translate-y-0' : '-translate-y-full'}`">
     <div class="w-[90%] max-w-6xl mx-auto h-16 flex items-center justify-between px-4 sm:px-[30px] box-border">
       <router-link
           class="text-xl font-black text-slate-800 tracking-tighter hover:text-indigo-600 transition-all duration-300"
