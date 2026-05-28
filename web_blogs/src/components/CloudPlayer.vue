@@ -1,7 +1,7 @@
 <script lang="ts" setup xmlns:animationPlayState="http://www.w3.org/1999/xhtml">
 import {useMusic, formatTime} from "@/utlis/tools.ts";
 import {useRouter} from "vue-router";
-import {ref, watch} from "vue";
+import {onUnmounted, ref, watch} from "vue";
 
 const router = useRouter()
 const {
@@ -40,23 +40,36 @@ const safeHandleSeek = (e) => {
   handleSeek(e);
 };
 
+// 歌词展示模拟器
+let typingInterval = null
 watch(() => currentLyric.value, () => {
+  if (typingInterval) {
+    clearInterval(typingInterval)
+  }
   let i = 0;
   displayedLyric.value = ''
   const target = currentLyric.value || "";
   if (!target) return;
 
-  const typingInterval = setInterval(() => {
+  typingInterval = setInterval(() => {
     if (i <= target.length) {
       displayedLyric.value = target.slice(0, i)
       i++;
     } else {
       clearInterval(typingInterval);
+      typingInterval = null
     }
   }, 50);
 
-  return () => clearInterval(typingInterval);
-}, {immediate: true, deep: true})
+}, {immediate: false, deep: true})
+
+
+onUnmounted(() => {
+  if (typingInterval) {
+    clearInterval(typingInterval)
+    typingInterval = null
+  }
+})
 </script>
 
 <template>
