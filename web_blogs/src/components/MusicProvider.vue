@@ -3,7 +3,6 @@
 // 【增强版 LRC 歌词解析】
 import {computed, onMounted, onUnmounted, provide, reactive, ref, toRefs, watch} from "vue";
 import {siteConfig} from "@/common/siteConfig.ts";
-import {st} from "vue-router/dist/useApi-D6ckOsFy";
 
 function parseLrc(lrcText: string) {
   if (!lrcText || lrcText.length > 30000) return [];
