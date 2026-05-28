@@ -37,9 +37,9 @@ export const siteConfig = {
     photoWallImage: "https://bu.dusays.com/2026/03/24/69c1e38b4c370.jpg",
     cloudMusicIds: ["1809646618", "3361076230", "1859390262"],
     social: {
-        github: "",
-        gitee: "",
-        google: "",
+        github: "https://www.github.com",
+        gitee: "https://www.gitee.com",
+        google: "https://www.google.com",
         email: "1533320811@qq.com",
         qq: "1533320811",
         wechat: "a1533320811",

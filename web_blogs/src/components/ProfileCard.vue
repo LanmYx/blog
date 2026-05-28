@@ -3,7 +3,6 @@ import {siteConfig} from "@/common/siteConfig.ts";
 import StatItem from "@/components/StatItem.vue";
 import {copyToClipboard, useToast} from "@/utlis/tools.ts";
 import SocialBtn from "@/components/SocialBtn.vue";
-import {inject} from 'vue'
 
 const {showToast} = useToast()
 
@@ -17,8 +16,9 @@ const goAbout = () => {
   console.log('goAbout')
 }
 
-const onClickSocialBtn = (type) => {
-  console.log(type)
+const onClickSocialBtn = (url) => {
+  // console.log(url)
+  window.open(url, '_blank');
 }
 
 const onCopyText = async (text, label) => {
@@ -69,11 +69,11 @@ const onCopyText = async (text, label) => {
       <div class="flex gap-2 md:gap-3 flex-wrap justify-center md:justify-end w-full md:w-auto"
            @click="(e) => e.stopPropagation()">
         <SocialBtn type="github"
-                   @click="onClickSocialBtn('github')"/>
+                   @click="onClickSocialBtn(siteConfig.social?.github)"/>
         <SocialBtn type="gitee"
-                   @click="onClickSocialBtn('gitee')"/>
+                   @click="onClickSocialBtn(siteConfig.social?.gitee)"/>
         <SocialBtn type="google"
-                   @click="onClickSocialBtn('google')"/>
+                   @click="onClickSocialBtn(siteConfig.social?.google)"/>
         <SocialBtn type="email" @click="onCopyText(siteConfig.social?.email,'邮箱')"/>
         <SocialBtn type="qq" @click="onCopyText(siteConfig.social?.qq,'QQ')"/>
         <SocialBtn type="wechat" @click="onCopyText(siteConfig.social?.wechat,'微信')"/>
