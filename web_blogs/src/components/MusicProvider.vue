@@ -3,6 +3,7 @@
 // 【增强版 LRC 歌词解析】
 import {computed, onMounted, onUnmounted, provide, reactive, ref, toRefs, watch} from "vue";
 import {siteConfig} from "@/common/siteConfig.ts";
+import {st} from "vue-router/dist/useApi-D6ckOsFy";
 
 function parseLrc(lrcText: string) {
   if (!lrcText || lrcText.length > 30000) return [];
@@ -227,19 +228,12 @@ watch(() => [state.currentIndex, state.playlist.length], () => {
           if (isMounted) state.currentLyric = '♪ 纯享音乐 ♪';
         });
   }
-
   if (state.isPlaying && audioRef.value) {
     const playPromise = audioRef.value.play();
     if (playPromise !== undefined) {
-      playPromise.catch(() => state.isPlaying = false);
+      playPromise.then(() => state.isPlaying = false);
     }
   }
-
-  // 清理函数
-  return () => {
-    isMounted = false
-  }
-
 }, {immediate: false})
 
 watch(() => [state.volume, state.isMuted], () => {
