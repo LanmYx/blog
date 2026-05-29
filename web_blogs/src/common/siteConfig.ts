@@ -7,7 +7,7 @@ import bg4 from '@/assets/bg-4.JPG'
 
 export const siteConfig = {
     // 1. 网站标题与博主信息
-    title: "LanmSama の 博客",
+    title: "LanmSama の 谷地",
     faviconUrl: "/favicon.jpg",
     authorName: "LanmSama",
     bio: "在代码、学术与分子动力学模拟间穿梭的普通人。近期正埋头于 GROMACS 模拟研究与神经网络计算。",
@@ -17,7 +17,7 @@ export const siteConfig = {
     // 👇 【新增】导航栏中间的那个后缀/分隔符（默认是 の）
     navSuffix: "の",
 
-    navAfter: "博客",
+    navAfter: "谷地",
 
     // 2. 头像设置 (支持网络链接，或将图片放入 public 文件夹后使用 "/me.jpg")
     avatarUrl: "/favicon.jpg",

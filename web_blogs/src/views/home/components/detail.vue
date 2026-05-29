@@ -11,6 +11,9 @@ import rehypeKatex from 'rehype-katex';
 
 import BackButton from "@/components/backButton.vue";
 import Comments from "@/components/comments.vue";
+import {siteConfig} from "@/common/siteConfig.ts";
+import ClientSocials from "@/components/ClientSocials.vue";
+import SidebarLyric from "@/components/SidebarLyric.vue";
 
 
 const props = defineProps({
@@ -131,6 +134,37 @@ watch(() => props.postData, (newValue) => {
         </div>
       </div>
     </article>
+
+    <aside class="w-full lg:w-[320px] flex flex-col gap-6 flex-shrink-0">
+      <div
+          class="bg-white/60 dark:bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 border border-white/40 dark:border-white/10 shadow-xl text-center">
+        <div
+            class="w-20 h-20 mx-auto rounded-full p-1 bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-md mb-4 transition-transform duration-500 hover:rotate-3">
+          <img :src="siteConfig.avatarUrl" alt="avatar" class="w-full h-full rounded-full object-cover bg-white"/>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">{{ siteConfig.authorName }}</h3>
+        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium mb-4">{{ siteConfig.bio }}</p>
+        <ClientSocials/>
+      </div>
+
+      <SidebarLyric/>
+
+      <!--      <div class="bg-white/60 dark:bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 border border-white/40 dark:border-white/10 shadow-xl">-->
+      <!--        <h3 class="font-black text-slate-900 dark:text-white mb-4 border-l-4 border-indigo-500 pl-2 text-sm">RECOMMENDED</h3>-->
+      <!--        <div class="space-y-4">-->
+      <!--          {recentPosts.map(p => (-->
+      <!--          <Link key={p.slug} href={`/posts/${p.slug}`} className="group block">-->
+      <!--            <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-1">{p.title}</h4>-->
+      <!--            <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-bold uppercase">{p.date}</p>-->
+      <!--          </Link>-->
+      <!--          ))}-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      {postData.toc.length > 0 && (-->
+      <!--      <ClientTOC toc={postData.toc} />-->
+      <!--      )}-->
+    </aside>
   </main>
 </template>
 

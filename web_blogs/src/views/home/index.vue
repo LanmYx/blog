@@ -9,6 +9,7 @@ import detailPost from './components/detail.vue'
 import ProfileCard from "@/components/ProfileCard.vue";
 import {albums} from "@/data/albums.ts";
 import CloudPlayer from "@/components/CloudPlayer.vue";
+import LyricBar from "@/components/LyricBar.vue";
 
 const showModule = ref('searchBar')
 const detailPostValue = ref(null)
@@ -86,26 +87,30 @@ _fetchChatters()
 
 <template>
   <pageTransition>
-    <div class="home-page w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6 lg:px-10 relative z-10">
-      <template v-if="showModule === 'searchBar'">
-        <searchBar :posts="allPosts" @changeModule="onChangeShowModule"/>
-        <main class="flex flex-col gap-6 w-full mt-6">
-          <!--          {/* 第一行：个人信息 + 播放器 */}-->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
-            <!--            {/* 手机上占满1列，电脑上占7列 */}-->
-            <div class="lg:col-span-7 flex flex-col">
-              <ProfileCard :chatterCount="allChatters.length" :photoCount="realPhotoCount"
-                           :postCount="allPosts.length"/>
-            </div>
-            <!--            {/* 手机上占满1列，电脑上占5列 */}-->
-            <div class="col-span-1 lg:col-span-5 flex flex-col">
-              <CloudPlayer/>
-            </div>
+    <div v-if="showModule === 'searchBar'"
+         class="home-page w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6 lg:px-10 relative z-10">
+      <searchBar :posts="allPosts" @changeModule="onChangeShowModule"/>
+      <main class="flex flex-col gap-6 w-full mt-6">
+        <!--          {/* 第一行：个人信息 + 播放器 */}-->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+          <!--            {/* 手机上占满1列，电脑上占7列 */}-->
+          <div class="col-span-1 lg:col-span-7 flex flex-col">
+            <ProfileCard :chatterCount="allChatters.length" :photoCount="realPhotoCount"
+                         :postCount="allPosts.length"/>
           </div>
-        </main>
-      </template>
-      <detailPost v-else :post-data="detailPostValue" @changeModule="onChangeShowModule"/>
+          <!--            {/* 手机上占满1列，电脑上占5列 */}-->
+          <div class="col-span-1 lg:col-span-5 flex flex-col">
+            <!--              <CloudPlayer/>-->
+          </div>
+        </div>
+
+        <!--          {/* 歌词栏 */}-->
+        <div class="w-full mt-[-10px]">
+          <LyricBar/>
+        </div>
+      </main>
     </div>
+    <detailPost v-else :post-data="detailPostValue" @changeModule="onChangeShowModule"/>
   </pageTransition>
 </template>
 
