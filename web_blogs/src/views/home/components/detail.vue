@@ -33,7 +33,15 @@ const onBack = () => {
   })
 }
 
-const detailData = ref({})
+const detailData = ref({
+  slug: undefined,
+  contentHtml: '',
+  toc: [],
+  title: '',
+  date: '',
+  tags: [],
+  cover: ''
+})
 
 function extractToc(content: string) {
   const headingRegex = /^(#{1,3})\s+(.+)$/gm;

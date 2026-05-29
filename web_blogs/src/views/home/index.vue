@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {ref, onMounted, nextTick, reactive} from 'vue'
+import {ref, onMounted, nextTick, reactive, computed} from 'vue'
 import fm from 'front-matter';
 import {formatUpdateTime} from "@/utlis/tools.ts";
 
@@ -10,6 +10,8 @@ import ProfileCard from "@/components/ProfileCard.vue";
 import {albums} from "@/data/albums.ts";
 import CloudPlayer from "@/components/CloudPlayer.vue";
 import LyricBar from "@/components/LyricBar.vue";
+import {siteConfig} from "@/common/siteConfig.ts";
+import LatestPostsCarousel from "@/components/LatestPostsCarousel.vue";
 
 const showModule = ref('searchBar')
 const detailPostValue = ref(null)
@@ -17,6 +19,16 @@ const detailPostValue = ref(null)
 let allPosts: any[] = reactive([]);
 let allChatters: any[] = reactive([]);
 const realPhotoCount = albums.reduce((total, album) => total + album.photos.length, 0);
+const top5Posts = computed(() => {
+  return allPosts.length > 0 ? allPosts.slice(0, 5) : [{
+    slug: 'none',
+    title: '暂无文章',
+    description: '快去写第一篇吧！',
+    cover: siteConfig.defaultPostCover,
+    date: '',
+    formattedDate: ''
+  }];
+})
 
 
 const onChangeShowModule = (val) => {
@@ -100,13 +112,23 @@ _fetchChatters()
           </div>
           <!--            {/* 手机上占满1列，电脑上占5列 */}-->
           <div class="col-span-1 lg:col-span-5 flex flex-col">
-            <CloudPlayer/>
+            <!--            <CloudPlayer/>-->
           </div>
         </div>
 
         <!--          {/* 歌词栏 */}-->
         <div class="w-full mt-[-10px]">
           <LyricBar/>
+        </div>
+
+        <!--        {/* 第二行：文章轮播 + 照片墙 + 说说 + 主题切换 */}-->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
+
+          <!--          {/* 左侧：文章轮播 (电脑端占4列，手机端排最上面) */}-->
+          <div class="col-span-1 lg:col-span-4 flex flex-col min-h-[300px]">
+            <LatestPostsCarousel :posts="top5Posts" @changeModule="onChangeShowModule"/>
+          </div>
+
         </div>
       </main>
     </div>
