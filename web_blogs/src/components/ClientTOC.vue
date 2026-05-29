@@ -101,6 +101,8 @@ const scrollToHeading = (e, id: string) => {
   activeId.value = id
 };
 
+let handleScroll = null
+
 const init = () => {
   const contentDiv = document.getElementById('article-content');
   if (!contentDiv) return;
@@ -114,7 +116,7 @@ const init = () => {
     heading.id = getSafeId(heading.textContent || '');
   });
 
-  const handleScroll = () => {
+  handleScroll = () => {
     const scrollY = window.scrollY;
     const offset = 150;
 
