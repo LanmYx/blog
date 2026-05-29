@@ -100,7 +100,7 @@ _fetchChatters()
           </div>
           <!--            {/* 手机上占满1列，电脑上占5列 */}-->
           <div class="col-span-1 lg:col-span-5 flex flex-col">
-            <!--              <CloudPlayer/>-->
+            <CloudPlayer/>
           </div>
         </div>
 

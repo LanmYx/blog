@@ -26,7 +26,7 @@ watch(() => currentLyric.value, () => {
     }
   }, 50);
 
-}, {immediate: false, deep: true})
+}, {immediate: true, deep: true})
 </script>
 
 <template>
