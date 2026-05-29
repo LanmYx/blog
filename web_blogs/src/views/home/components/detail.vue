@@ -14,6 +14,7 @@ import Comments from "@/components/comments.vue";
 import {siteConfig} from "@/common/siteConfig.ts";
 import ClientSocials from "@/components/ClientSocials.vue";
 import SidebarLyric from "@/components/SidebarLyric.vue";
+import ClientTOC from "@/components/ClientTOC.vue";
 
 
 const props = defineProps({
@@ -149,21 +150,7 @@ watch(() => props.postData, (newValue) => {
 
       <SidebarLyric/>
 
-      <!--      <div class="bg-white/60 dark:bg-slate-800/50 backdrop-blur-xl rounded-3xl p-6 border border-white/40 dark:border-white/10 shadow-xl">-->
-      <!--        <h3 class="font-black text-slate-900 dark:text-white mb-4 border-l-4 border-indigo-500 pl-2 text-sm">RECOMMENDED</h3>-->
-      <!--        <div class="space-y-4">-->
-      <!--          {recentPosts.map(p => (-->
-      <!--          <Link key={p.slug} href={`/posts/${p.slug}`} className="group block">-->
-      <!--            <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-1">{p.title}</h4>-->
-      <!--            <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-bold uppercase">{p.date}</p>-->
-      <!--          </Link>-->
-      <!--          ))}-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--      {postData.toc.length > 0 && (-->
-      <!--      <ClientTOC toc={postData.toc} />-->
-      <!--      )}-->
+      <ClientTOC v-if="detailData.toc.length" :toc="detailData.toc"/>
     </aside>
   </main>
 </template>
