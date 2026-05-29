@@ -139,7 +139,7 @@ const nextSong = () => {
 
 const prevSong = () => {
   if (state.playMode === 'random') {
-    state.currentIndex = Math.floor(Math.random() * playlist.length)
+    state.currentIndex = Math.floor(Math.random() * state.playlist.length)
   } else {
     state.currentIndex = (state.currentIndex - 1 + state.playlist.length) % state.playlist.length;
   }
@@ -216,11 +216,12 @@ watch(() => [state.currentIndex, state.playlist.length], () => {
             const parsed = parseLrc(text);
             state.lyrics = parsed
             // 🌟 3. 将解析好的歌词反向写入到 playlist 的 currentSong 中，供 MusicPage 读取！
-            state.playlist = state.playlist.map((item, idx) =>
-                idx === currentIndex.value
-                    ? {...item, lyrics: parsed}
-                    : item
-            );
+            // state.playlist = state.playlist.map((item, idx) =>
+            //     idx === currentIndex.value
+            //         ? {...item, lyrics: parsed}
+            //         : item
+            // );
+            state.playlist[state.currentIndex].lyrics = parsed
           }
         })
         .catch(() => {
