@@ -84,12 +84,13 @@ export function useMusic() {
 export const copyToClipboard = (text: string, label: string) => {
     return new Promise((resolve, reject) => {
         try {
-            navigator.clipboard.writeText(text);
-            resolve({
-                text,
-                label,
-                code: 200
-            });
+            navigator.clipboard.writeText(text).then(() => {
+                resolve({
+                    text,
+                    label,
+                    code: 200
+                });
+            })
         } catch (error) {
             reject(error);
         }
